@@ -34,7 +34,31 @@ class Level():
 			#We save the structure
 			self.structure = structure_level
 
-	#def find_holes
+	def find_holes(self):
+		"""This method finds all available holes in the Labyrinth"""
+		#We go through the list level
+		holes_list = []
+		line_nb = 0
+		for line in self.structure:
+			case_nb = 0
+			for sprite in line:
+				#Calculating the position of each sprite (in pixels)
+				x = case_nb * sprite_size
+				y = line_nb * sprite_size
+				if sprite == 'h':
+					coord = (x, y)
+					holes_list.append(coord)
+				case_nb += 1
+			line_nb += 1
+		#Generating 3 random coordinates for our elements and saving them in a list
+		elements_list = []
+		for i in range(3):
+			hole = randint(0, len(holes_list)-1)
+			coord_hole = holes_list[hole]
+			elements_list.append(coord_hole)
+			del holes_list[hole]
+			i += 1
+		self.elements_list = elements_list
 		
 
 	def display_level(self, canvas):
@@ -59,7 +83,13 @@ class Level():
 				case_nb += 1
 			line_nb += 1
 
-#class Element_Game
+class Element_Game():
+	"""This class creates an element to be picked up by the character"""
+	def __init__(self, picture, coord_hole):
+		self.picture = pygame.image.load(picture).convert_alpha()
+		self.coord_hole = coord_hole
+		self.x_pos = self.coord_hole[0]
+		self.y_pos = self.coord_hole[1]
 
 
 class Character():
