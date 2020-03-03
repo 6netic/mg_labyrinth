@@ -31,10 +31,10 @@ pygame.display.flip()
 #MAIN LOOP
 running = True
 while running:
-	pygame.time.Clock().tick(30)	
+	pygame.time.Clock().tick(30)
 	for event in pygame.event.get():
 		if event.type == QUIT or event.type == KEYDOWN and event.key == K_ESCAPE:
-			running = False		
+			running = False
 		elif event.type == KEYDOWN:
 			if event.key == K_F1:
 				first, second, third = False, False, False
@@ -42,12 +42,12 @@ while running:
 				pygame.display.update()
 				#Loading the background
 				background = pygame.image.load(background_pic).convert()
-				canvas.blit(background, (0,0))				
+				canvas.blit(background, (0, 0))		
 				level = Level('n1')
 				level.genererate_level()
 				level.display_level(canvas)
 				level.find_holes()
-			
+
 				#Adding the 3 elements
 				object1 = level.elements_list[0]
 				element1 = Element_Game("Images/tube.png", object1)
@@ -67,7 +67,6 @@ while running:
 				#Integrating the structure to Character class
 				mcgyver = Character("Images/MacGyver.png", level.structure)
 				canvas.blit(mcgyver.moving, (mcgyver.x, mcgyver.y))
-
 			
 			#Moving the character
 			elif event.type == KEYDOWN:
@@ -81,7 +80,7 @@ while running:
 					mcgyver.move_character('down')
 				
 				#Displaying the new position and the 3 elements after each move
-				canvas.blit(background, (0,0))
+				canvas.blit(background, (0, 0))
 				level.display_level(canvas)
 				canvas.blit(element1.picture, (element1.x_pos, element1.y_pos))
 				canvas.blit(element2.picture, (element2.x_pos, element2.y_pos))
@@ -120,13 +119,13 @@ while running:
 			if level.structure[mcgyver.y_case][mcgyver.x_case] == 'e':
 				#Game is lost!
 				failed = pygame.image.load(failed_pic).convert()
-				canvas.blit(failed, (0,0))
+				canvas.blit(failed, (0, 0))
 				if first:
 					if second:
 						if third:
 							#Game is won
 							won = pygame.image.load(won_pic).convert()
-							canvas.blit(won, (0,0))
+							canvas.blit(won, (0, 0))
 			
 			pygame.display.flip()	
 
