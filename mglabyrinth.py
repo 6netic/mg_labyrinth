@@ -118,8 +118,16 @@ while running:
 			
 			#Victory -> back to welcome screen
 			if level.structure[mcgyver.y_case][mcgyver.x_case] == 'e':
-				won = pygame.image.load(won_pic).convert()
-				canvas.blit(won, (0,0))
+				#Game is lost!
+				failed = pygame.image.load(failed_pic).convert()
+				canvas.blit(failed, (0,0))
+				if first:
+					if second:
+						if third:
+							#Game is won
+							won = pygame.image.load(won_pic).convert()
+							canvas.blit(won, (0,0))
+			
 			pygame.display.flip()	
 
 pygame.quit()
