@@ -35,7 +35,6 @@ class Level():
 			self.structure = structure_level
 
 	#def find_holes
-	
 		
 
 	def display_level(self, canvas):
@@ -63,4 +62,51 @@ class Level():
 #class Element_Game
 
 
-#class Character
+class Character():
+	"""This class creates MacGyver character and makes him move"""
+	#Initializing main character
+	def __init__(self, moving, structure):
+		#Sprite of the character
+		self.structure = structure
+		self.moving = pygame.image.load(moving).convert_alpha()
+		#Position of the character in cases and pixels
+		self.x_case = 0
+		self.y_case = 0
+		self.x = 0
+		self.y = 0
+
+	def move_character(self, move):
+		"""This method allows the character to move in any direction"""
+		#Moving to the right
+		if move == 'right':
+			#Verifying the character stays in the earea
+			if self.x_case < (sprite_nb_by_side - 1):
+				#Checking the sprite is not a wall
+				if self.structure[self.y_case][self.x_case+1] != 'w':
+					#Moving one case ahead
+					self.x_case += 1
+					#Calculating the real position in pixel
+					self.x = self.x_case * sprite_size
+			
+		#Moving to the left
+		if move == 'left':
+			if self.x_case > 0:
+				if self.structure[self.y_case][self.x_case-1] != 'w':
+					self.x_case -= 1
+					self.x = self.x_case * sprite_size
+
+		#Moving up
+		if move == 'up':
+			if self.y_case > 0:
+				if self.structure[self.y_case-1][self.x_case] != 'w':
+					self.y_case -= 1
+					self.y = self.y_case * sprite_size
+
+		#Moving down
+		if move == 'down':
+			if self.y_case < (sprite_nb_by_side - 1):
+				if self.structure[self.y_case+1][self.x_case] != 'w':
+					self.y_case += 1
+					self.y = self.y_case * sprite_size
+
+
