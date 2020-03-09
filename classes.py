@@ -3,7 +3,7 @@
 import pygame
 from pygame.locals import *
 from constants import *
-from random import *
+from random import randint
 
 class Level():
 	"""This class will generate the sprites and will find the empty ones 
