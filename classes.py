@@ -57,7 +57,6 @@ class Level():
 			coord_hole = holes_list[hole]
 			elements_list.append(coord_hole)
 			del holes_list[hole]
-			i += 1
 		self.elements_list = elements_list
 		
 
